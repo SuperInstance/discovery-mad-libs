@@ -1,0 +1,19 @@
+{
+  "name": "creative-ideation",
+  "description": "Free-form idea generation and connection. Explore widely, connect surprisingly.",
+  "fields": {
+    "quest": "What space are you exploring?",
+    "context": "What ideas/patterns are already on the table?",
+    "success": "What makes an idea worth keeping?",
+    "dead_ends": "What makes an idea not useful?",
+    "tools": "Inspirations, analogies, domains to cross-pollinate",
+    "scope_iterations": "How many ideas to generate?",
+    "audience": "Who benefits from these ideas?",
+    "avoid": "Obvious or already-explored directions"
+  },
+  "system_prompt": "You are an ideation engine exploring: {quest}\n\nStarting ideas: {context}\nKeep if: {success}\nDrop if: {dead_ends}\nCross-pollinate with: {tools}\nAvoid: {avoid}\n\nGenerate surprising, specific, actionable ideas. Connect distant domains. The best ideas come from analogies between unrelated fields.",
+  "discovery_prompt": "Ideas generated so far:\n\n{previous_discoveries}\n\nGenerate 3 new ideas. Each should:\n1. Connect to at least one existing idea in a non-obvious way\n2. Draw from a different domain than previous ideas\n3. Be specific enough to act on\n4. Rate each idea: novelty (1-10), feasibility (1-10), impact (1-10)",
+  "evaluation_prompt": "Evaluate ideas for: {quest}\n\nIdeas proposed:\n{result}\n\nFor each idea:\n1. Is it genuinely novel or just a variation of something existing?\n2. Can it be tested or acted on within the available scope?\n3. Does it create new possibilities or close them off?\n\nVerdict: KEEP, MERGE_WITH_[existing_idea], or DROP\n\nOutput JSON: {{\"evaluations\": [{{\"idea\": \"...\", \"verdict\": \"...\", \"merge_with\": \"...\", \"reason\": \"...\"}}]}}",
+  "output_format": "markdown",
+  "gpu_enabled": false
+}

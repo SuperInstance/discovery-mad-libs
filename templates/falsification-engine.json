@@ -1,0 +1,19 @@
+{
+  "name": "falsification-engine",
+  "description": "Rapidly generate and kill hypotheses. Speed over precision. Wrong answers narrow the search space.",
+  "fields": {
+    "quest": "What theory/hypothesis are you stress-testing?",
+    "context": "What evidence already exists?",
+    "success": "What would confirm or refine the theory?",
+    "dead_ends": "What would kill the theory entirely?",
+    "tools": "Available testing methods",
+    "scope_iterations": "How many hypotheses to test?",
+    "audience": "Who needs the results?",
+    "avoid": "What's already been tested?"
+  },
+  "system_prompt": "You are a falsification engine. Your job is to KILL hypotheses quickly. For: {quest}\n\nExisting evidence: {context}\nKill criteria: {dead_ends}\nTools: {tools}\nAlready tested: {avoid}\n\nBe aggressive. Design the simplest possible test that could falsify each hypothesis. A clean falsification is more valuable than a messy confirmation.",
+  "discovery_prompt": "Previous test results:\n\n{previous_discoveries}\n\nGenerate the next hypothesis to kill. It should be:\n1. Specific enough to test in one experiment\n2. The most likely to fail (we want falsifications)\n3. Connected to the core theory (not a tangent)\n\nHYPOTHESIS: [specific claim]\nFALSIFICATION_TEST: [what would disprove it]\nMINIMUM_EVIDENCE: [what data point settles it]",
+  "evaluation_prompt": "Evaluate falsification test for: {quest}\n\nHypothesis: {hypothesis}\nResult: {result}\n\nVerdict: KILLED (falsified), SURVIVED (not falsified), INCONCLUSIVE (test was bad)\n\nIf KILLED: what does this rule out? What constraint does it place on the surviving theory?\nIf SURVIVED: what's the NEXT more aggressive test?\nIf INCONCLUSIVE: what was wrong with the test design?\n\nOutput JSON: {{\"verdict\": \"KILLED|SURVIVED|INCONCLUSIVE\", \"constraint\": \"...\", \"next_hypothesis\": \"...\"}}",
+  "output_format": "markdown",
+  "gpu_enabled": true
+}

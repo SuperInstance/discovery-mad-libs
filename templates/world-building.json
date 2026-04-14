@@ -1,0 +1,19 @@
+{
+  "name": "world-building",
+  "description": "Fiction world construction — geography, cultures, magic systems, technology, history",
+  "fields": {
+    "quest": "What world are you building?",
+    "context": "What's already established (genre, era, key concepts)?",
+    "success": "What makes a good addition to this world?",
+    "dead_ends": "What breaks the world's internal logic?",
+    "tools": "What references inspire you (books, games, myths)?",
+    "scope_iterations": "How many elements to generate?",
+    "audience": "Who is this world for (readers, players, yourself)?",
+    "avoid": "What tropes or elements to avoid?"
+  },
+  "system_prompt": "You are a world-building engine creating: {quest}\n\nEstablished canon:\n{context}\n\nGood additions: {success}\nBreaking logic: {dead_ends}\nInspirations: {tools}\nAudience: {audience}\nAvoid: {avoid}\n\nEach discovery adds a new element to the world. Maintain internal consistency. Reference what's already established. Be specific — names, places, customs, not vague concepts.",
+  "discovery_prompt": "Current world state:\n\n{previous_discoveries}\n\nWhat element should we add next? Consider:\n- What gaps exist in the world?\n- What would create interesting conflicts or stories?\n- What connects to existing elements in surprising ways?\n\nGenerate a detailed new element with connections to at least 2 existing elements.",
+  "evaluation_prompt": "You are evaluating a world-building addition for: {quest}\n\nProposed addition:\n{result}\n\nDoes this:\n1. Maintain internal consistency with established canon?\n2. Create interesting possibilities for stories/gameplay?\n3. Connect meaningfully to existing elements?\n4. Avoid the excluded tropes/elements?\n\nVerdict: CANON (add to world), REVISE (good idea needs adjustment), REJECT (breaks logic)\n\nOutput as JSON: {{\"verdict\": \"CANON|REVISE|REJECT\", \"connections\": [\"...\"], \"stories_enabled\": [\"...\"], \"adjustment\": \"...\"}}",
+  "output_format": "markdown",
+  "gpu_enabled": false
+}
